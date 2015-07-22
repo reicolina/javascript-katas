@@ -17,6 +17,15 @@ var miscKatas = (function () {
         return count;
     };
 
+    // KATA: function that tells if a given string is the same when read backwards (palindrome)
+    module.isPalindrome = function (str) {
+        // - take the original string, convert it into an array
+        // - reverse the array
+        // - convert the array back to a string
+        // - compare with the original string
+        return str.split('').reverse().join('') === str;
+    };
+
     return module;
 }());
 
@@ -28,12 +37,15 @@ var tests = (function (miscKatas) {
     var buildTestResult = function (success) {
         return success ? 'success' : 'fail';
     };
+
     module.vowelCounterTests = function () {
-        var success = (miscKatas.vowelCounter("hola") === 2) && 
-            (miscKatas.vowelCounter("123454") === 0) && 
-            (miscKatas.vowelCounter(null) === 0) && 
-            (miscKatas.vowelCounter(undefined) === 0);
+        var success = (miscKatas.vowelCounter("hola") === 2) && (miscKatas.vowelCounter("123454") === 0) && (miscKatas.vowelCounter(null) === 0) && (miscKatas.vowelCounter(undefined) === 0);
         console.log('vowelCounterTests: ' + buildTestResult(success));
+    };
+
+    module.isPalindromeTests = function () {
+        var success = (miscKatas.isPalindrome('eye') && !miscKatas.isPalindrome('house'));
+        console.log('isPalindromeTests: ' + buildTestResult(success));
     };
 
     return module;
@@ -41,3 +53,4 @@ var tests = (function (miscKatas) {
 
 // run the tests within the 'tests' module
 tests.vowelCounterTests();
+tests.isPalindromeTests();
